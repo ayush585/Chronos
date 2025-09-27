@@ -1,0 +1,6 @@
+﻿export const TOKENS = {
+  SEPOLIA: {
+    PYUSD: '0x0000000000000000000000000000000000000000' // TODO: test token addr
+  },
+  POLYGON_AMOY: { }
+};

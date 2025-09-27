@@ -1,0 +1,11 @@
+﻿node_modules
+.next
+.env
+out
+dist
+coverage
+cache
+*.log
+contracts/out
+contracts/cache
+src/generated/manifests/*
