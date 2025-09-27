@@ -3,3 +3,5 @@
   const frac = (f + '0'.repeat(decimals)).slice(0,decimals);
   return BigInt(i+frac);
 }
+
+export const amountToUnits = amountToWei;

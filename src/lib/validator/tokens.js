@@ -4,3 +4,11 @@
   },
   POLYGON_AMOY: { }
 };
+
+export const CHAINS = {
+  SEPOLIA: {
+    id: 11155111,
+    name: 'Sepolia',
+    rpcUrl: 'https://sepolia.infura.io/v3/'
+  }
+};
