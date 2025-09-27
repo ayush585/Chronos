@@ -1,4 +1,4 @@
-﻿# Intent Fusion Layer (Zapier for DeFi Intents)
+﻿# Chronos  Intent Fusion Layer (Zapier for DeFi Intents)
 
 **One-liner:** Users type \"Send 10 PYUSD to alice.eth every Friday until ETH > 3000\" â†’ we parse â†’ validate â†’ compile a minimal smart contract â†’ deploy to Sepolia â†’ execute on schedule unless a Pyth price condition stops it. Pause/cancel anytime.
 
