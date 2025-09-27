@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "chronos",
   "private": true,
   "version": "0.1.0",
@@ -20,14 +20,16 @@
     "axios": "^1.7.7",
     "ethers": "^6.13.2",
     "handlebars": "^4.7.8",
-    "next": "14.2.15",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "viem": "^2.21.15",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "autoprefixer": "^10.4.21",
+    "postcss-import": "^16.1.1",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^4.1.13"
   }
 }
-

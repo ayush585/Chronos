@@ -12,6 +12,6 @@ export async function compileFromPlan(plan){
   const manifest = buildManifest(plan);
   const outDir = path.join(process.cwd(),'src/generated');
   fs.writeFileSync(path.join(outDir,'contracts','ConditionalRecurringIntent.sol'), solidity);
-  fs.writeFileSync(path.join(outDir,'manifests',manifest-\.json), JSON.stringify(manifest,null,2));
+  fs.writeFileSync(path.join(outDir,'manifests',`${manifest.id}.json`), JSON.stringify(manifest,null,2));
   return { solidity, manifest };
 }
