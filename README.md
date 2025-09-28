@@ -169,23 +169,3 @@ Built at ETHGlobal Delhi 2025 for the PayPal / PYUSD track.
 
 Chronos demonstrates how PYUSD can power recurring payments — a core financial primitive for payrolls, allowances, subscriptions, and donations.
 
-
----
-
-📜 License
-
-MIT — feel free to fork, extend, and hack on Chronos.
-
-
----
-
-📖 About Section (for repo/About tab)
-
-Chronos ⏰💵 is a recurring payments dApp for PYUSD, PayPal’s ERC-20 stablecoin.
-It lets anyone schedule recurring transfers (daily, weekly, monthly, or custom) and execute them on-chain with one click, fully non-custodial.
-
-Built with Next.js, wagmi, viem, and MetaMask on Sepolia testnet, Chronos shows how stablecoins like PYUSD can go beyond trading — into everyday finance: allowances, salaries, subscriptions, donations.
-
-
----
-
