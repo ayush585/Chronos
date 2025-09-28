@@ -1,20 +1,36 @@
-﻿# Chronos  Intent Fusion Layer (Zapier for DeFi Intents)
+# PYUSD Recurring Scheduler
 
-**One-liner:** Users type \"Send 10 PYUSD to alice.eth every Friday until ETH > 3000\" â†’ we parse â†’ validate â†’ compile a minimal smart contract â†’ deploy to Sepolia â†’ execute on schedule unless a Pyth price condition stops it. Pause/cancel anytime.
+Small Next.js app that lets you draft and execute recurring PayPal USD (PYUSD) transfers on the Sepolia testnet. It stores schedules locally and uses MetaMask plus Wagmi to send ERC-20 transfer calls when you are ready.
 
-## Quickstart
-\\\ash
-pnpm install
-cp .env.example .env    # fill RPC + PRIVATE_KEY (throwaway)
-pnpm dev
-# open http://localhost:3000
-\\\
+## Features
 
-## Useful scripts
-- \pnpm forge:build\ â€” compile contracts
-- \pnpm forge:test\ â€” run Foundry tests
-- \pnpm deploy:viem\ â€” deploy compiled artifact using viem + manifest
-- \pnpm simulate\ â€” local time-warp demo (anvil)
-- \pnpm set:mock:price\ â€” set MockOracle price for demo
+- Connect a MetaMask wallet and read its PYUSD balance.
+- Create schedules with daily, weekly, monthly, or custom day intervals.
+- Track due payments with friendly reminders and quick execution buttons.
+- Persist schedules per-wallet in localStorage so you stay in control.
 
-See **docs/** for architecture, threat model, sponsors, demo script, roadmap.
+## Prerequisites
+
+- Node.js 18 or newer and npm.
+- MetaMask (or any injected wallet) connected to Sepolia.
+- PYUSD tokens on Sepolia. (Mint through your preferred faucet.)
+- Optional: set NEXT_PUBLIC_SEPOLIA_RPC_URL for a custom RPC endpoint. Defaults to https://1rpc.io/sepolia if unset.
+
+Copy .env.local.example to .env.local and fill in any overrides you need:
+
+    cp .env.local.example .env.local
+
+## Getting Started
+
+Install dependencies and run the dev server:
+
+    npm install
+    npm run dev
+
+Open http://localhost:3000 and connect MetaMask. Create a schedule, keep the tab open, and execute each payment when it comes due.
+
+## Notes
+
+- The app does not execute transfers automatically in the background; it is a convenient reminder plus one-click sender.
+- All data lives in the browser. Clearing storage or switching browsers will remove your schedules.
+- Update PYUSD_ADDRESS and decimals in src/lib/pyusd.ts if PayPal rotates contracts in the future.
