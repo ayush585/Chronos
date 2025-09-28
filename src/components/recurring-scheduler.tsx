@@ -6,7 +6,7 @@ import {
   useReadContract,
   useWriteContract,
 } from "wagmi";
-import { erc20Abi, formatUnits, parseUnits } from "viem";
+import { Address, erc20Abi, formatUnits, parseUnits } from "viem";
 import { waitForTransactionReceipt } from "wagmi/actions";
 
 import { config } from "@/lib/wagmi";
@@ -21,8 +21,8 @@ type Recurrence = "daily" | "weekly" | "monthly" | "custom";
 
 interface Schedule {
   id: string;
-  owner: string;
-  recipient: string;
+  owner: Address;
+  recipient: Address;
   amount: string;
   recurrence: Recurrence;
   everyDays?: number;
@@ -84,8 +84,8 @@ function persistSchedules(all: Schedule[]) {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
 }
 
-function sanitizedAddress(value: string) {
-  return value.trim().toLowerCase();
+function sanitizedAddress(value: string): Address {
+  return value.trim().toLowerCase() as Address;
 }
 
 function isValidAddress(value: string) {
@@ -170,7 +170,7 @@ function formatRelativeTime(targetIso: string, now: Date) {
   return formatter.format(diffYears, "year");
 }
 
-function makeSchedule(form: FormState, owner: string): Schedule {
+function makeSchedule(form: FormState, owner: Address): Schedule {
   const base = new Date(form.startAt ? form.startAt : new Date().toISOString());
   const sanitizedOwner = sanitizedAddress(owner);
   const record: Schedule = {
@@ -189,7 +189,7 @@ function makeSchedule(form: FormState, owner: string): Schedule {
   return record;
 }
 
-function filterByOwner(all: Schedule[], owner?: string | null) {
+function filterByOwner(all: Schedule[], owner?: Address | null) {
   if (!owner) {
     return createEmptySchedules();
   }
