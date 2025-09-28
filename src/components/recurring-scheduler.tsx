@@ -3,8 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   useAccount,
-  useConnect,
-  useDisconnect,
   useReadContract,
   useWriteContract,
 } from "wagmi";
@@ -17,6 +15,7 @@ import {
   PYUSD_DECIMALS,
   PYUSD_SYMBOL,
 } from "@/lib/pyusd";
+import { WalletButton } from "./wallet-button";
 
 type Recurrence = "daily" | "weekly" | "monthly" | "custom";
 
@@ -200,9 +199,6 @@ function filterByOwner(all: Schedule[], owner?: string | null) {
 
 export function RecurringScheduler() {
   const { address, isConnected } = useAccount();
-  const { connect, connectors, status: connectStatus, error: connectError } = useConnect();
-  const primaryConnector = connectors[0];
-  const { disconnect } = useDisconnect();
   const [form, setForm] = useState<FormState>(initialFormState);
   const [schedules, setSchedules] = useState<Schedule[]>(createEmptySchedules());
   const [now, setNow] = useState(new Date());
@@ -392,33 +388,7 @@ export function RecurringScheduler() {
           )}
         </div>
         <div className="flex flex-col items-stretch gap-2 sm:items-end">
-          {!isConnected && (
-            <button
-              className="rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
-              onClick={() => primaryConnector && connect({ connector: primaryConnector })}
-              disabled={connectStatus === "connecting" || !primaryConnector}
-            >
-              {connectStatus === "connecting" ? "Connecting…" : primaryConnector ? "Connect with " + primaryConnector.name : "No wallet connector"}
-            </button>
-          )}
-          {connectError && (
-            <p className="max-w-xs text-xs text-red-400">
-              {connectError.message}
-            </p>
-          )}
-          {isConnected && address && (
-            <div className="flex flex-col items-start gap-2 text-sm sm:items-end">
-              <span className="rounded-full bg-slate-800 px-3 py-1 font-mono text-xs uppercase tracking-wider text-slate-200">
-                {address.slice(0, 6) + "…" + address.slice(-4)}
-              </span>
-              <button
-                className="text-xs text-slate-400 underline underline-offset-4 hover:text-slate-200"
-                onClick={() => disconnect()}
-              >
-                Disconnect
-              </button>
-            </div>
-          )}
+          <WalletButton />
         </div>
       </header>
 
