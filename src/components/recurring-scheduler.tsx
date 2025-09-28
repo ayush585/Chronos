@@ -198,7 +198,7 @@ function filterByOwner(all: Schedule[], owner?: Address | null) {
 }
 
 export function RecurringScheduler() {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, status: connectionStatus } = useAccount();
   const [form, setForm] = useState<FormState>(initialFormState);
   const [schedules, setSchedules] = useState<Schedule[]>(createEmptySchedules());
   const [now, setNow] = useState(new Date());
@@ -509,7 +509,7 @@ export function RecurringScheduler() {
             <button
               className="w-full rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:bg-emerald-500/50"
               type="submit"
-              disabled={!isConnected || connectStatus === "connecting"}
+              disabled={!isConnected || connectionStatus === "connecting"}
             >
               {isConnected ? "Add schedule" : "Connect wallet to create"}
             </button>
